@@ -1,14 +1,13 @@
 package models.game;
 
 import main.math.MakeRandom;
-import models.acounts.Acount;
-import models.acounts.Rival;
-import models.acounts.User;
+import models.acounts.*;
 import models.soldier.Soldier;
 import org.bson.types.ObjectId;
 
 public class Game {
     private User user;
+    private WarResult warResult;
 
     public Game(){
         user = new User();
@@ -26,12 +25,26 @@ public class Game {
         System.out.println("----Game is start----");
         Rival rival = new Rival();
         int counter = 1;
+        int userTeamCount = user.getTeam().size();
 
         while (judgeWar(rival)) {
             System.out.println("----Round " + counter + "----");
             soldierFight(rival);
             counter++;
         }
+
+        WarStatus warStatus = new WarStatus();
+        int deadUnit = userTeamCount - user.getTeam().size();
+        int liveUnit = user.getTeam().size();
+
+        warStatus.setDeadUnit(deadUnit);
+        warStatus.setLiveUnit(liveUnit);
+        warStatus.setWarResult(warResult);
+        warStatus.setWarRound(counter);
+        ObjectId id = new ObjectId();
+        warStatus.setId(id);
+
+        this.user.getWarStatusList().add(warStatus);
     }
 
     private Soldier selectSoldier(Acount acount){
@@ -104,10 +117,12 @@ public class Game {
 
     private void lose(){
         System.out.println("---Lose the match---");
+        this.warResult = warResult.Lose;
     }
 
     private void win(){
         this.user.setPoint(this.user.getPoint() + 2);
+        this.warResult = warResult.Win;
         System.out.println("---You Win---");
     }
 }
