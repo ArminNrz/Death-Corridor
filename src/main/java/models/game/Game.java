@@ -91,7 +91,7 @@ public class Game {
         return result;
     }
 
-    private void kill(ObjectId soldierId, Acount acount){
+    private void kill(int soldierId, Acount acount){
 
         for(Soldier soldier : acount.getTeam()){
             if(soldier.getId() == soldierId){
