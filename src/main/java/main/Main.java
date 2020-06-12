@@ -8,8 +8,6 @@ import models.soldier.Sergeant;
 import models.soldier.Soldier;
 import models.weapons.AssaultRife;
 import org.bson.types.ObjectId;
-import persistance.soldier.SoldierDao;
-import persistance.soldier.SoldierMango;
 
 public class Main {
     public static void main(String[] arg){

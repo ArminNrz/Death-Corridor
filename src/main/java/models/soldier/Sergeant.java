@@ -3,6 +3,10 @@ package models.soldier;
 import models.weapons.Weapon;
 
 public class Sergeant extends Soldier {
+    public Sergeant(){
+        super();
+    }
+
     public Sergeant(Weapon weapon) {
         super(weapon);
         health = 100;

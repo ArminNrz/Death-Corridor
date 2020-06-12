@@ -1,10 +1,13 @@
 package models.weapons;
 
 import models.bollet.Bollet;
+import org.bson.Document;
 
 import java.util.Random;
 
 public class SniperRife extends Weapon {
+    private final String ZOOM = "zoom";
+
     private Boolean zoom;
 
     public SniperRife(Bollet bollet, Boolean zoom) {
@@ -16,6 +19,11 @@ public class SniperRife extends Weapon {
             hitRate += makeRandomZoom();
         }
         type = "SniperRife";
+    }
+
+    public SniperRife(Document doc){
+        super(doc);
+        this.zoom = doc.getBoolean(ZOOM);
     }
 
     private int makeRandomZoom(){
@@ -31,7 +39,10 @@ public class SniperRife extends Weapon {
         return result;
     }
 
-    public Boolean getZoom(){
-        return this.zoom;
+    @Override
+    public Document getBsonDocument(){
+        Document document = super.getBsonDocument();
+        document.append(ZOOM, zoom);
+        return document;
     }
 }

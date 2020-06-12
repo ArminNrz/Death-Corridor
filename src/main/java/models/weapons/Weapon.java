@@ -1,8 +1,14 @@
 package models.weapons;
 
 import models.bollet.Bollet;
+import org.bson.Document;
 
 public abstract class Weapon {
+    private final String DAMAGE = "damage";
+    private final String HITRATE = "hitRate";
+    private final String TYPE = "type";
+    private final String BOLLET = "Bollet";
+
     protected String type;
     protected int hitRate;
     protected int damage;
@@ -10,6 +16,17 @@ public abstract class Weapon {
 
     public Weapon(Bollet bollet) {
         this.bollet = bollet;
+    }
+
+    public Weapon(Document doc){
+        this.hitRate = doc.getInteger(HITRATE);
+        this.damage = doc.getInteger(DAMAGE);
+        this.type = doc.getString(TYPE);
+        String bollet = doc.getString(BOLLET);
+        if(bollet.equals("CALIBER5MM"))
+            this.bollet = Bollet.CALIBER5MM;
+        else
+            this.bollet = Bollet.CALIBER7MM;
     }
 
     public void bolletResult(){
@@ -37,6 +54,15 @@ public abstract class Weapon {
 
     public void comandoWeapon(){
         hitRate += 5;
+    }
+
+    public Document getBsonDocument(){
+        Document document = new Document();
+        document.append(HITRATE, hitRate);
+        document.append(DAMAGE, damage);
+        document.append(TYPE, type);
+        document.append(BOLLET, bollet.toString());
+        return document;
     }
 
     public abstract String showWeapon();

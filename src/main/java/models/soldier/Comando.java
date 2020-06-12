@@ -4,6 +4,9 @@ import models.weapons.Weapon;
 
 public class Comando extends Soldier {
 
+    public Comando(){
+        super();
+    }
 
     public Comando(Weapon weapon) {
         super(weapon);
@@ -24,4 +27,6 @@ public class Comando extends Soldier {
         health -= damage;
         health += 5;
     }
+
+
 }

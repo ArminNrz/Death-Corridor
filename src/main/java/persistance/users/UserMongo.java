@@ -35,8 +35,7 @@ public class UserMongo implements UserDao {
 
     @Override
     public User addUser(User user) {
-        User finduser = null;
-        Object object = collection.find(eq("_id", user.getId())).first();
+        User finduser  = collection.find(eq("_id", user.getId())).first();
         if(finduser != null){
             collection.replaceOne(eq("_id", finduser.getId()), user);
         }else {

@@ -1,6 +1,7 @@
 package models.weapons;
 
 import models.bollet.Bollet;
+import org.bson.Document;
 
 public class AssaultRife extends Weapon {
     public AssaultRife(Bollet bollet) {
@@ -10,9 +11,18 @@ public class AssaultRife extends Weapon {
         type = "AssaultRife";
     }
 
+    public AssaultRife(Document doc){
+        super(doc);
+    }
+
     @Override
     public String showWeapon() {
         String result = "[Weapon: AssaultRife, " + "Bollet Size: " + this.bollet + "]";
         return result;
+    }
+
+    @Override
+    public Document getBsonDocument(){
+        return super.getBsonDocument();
     }
 }

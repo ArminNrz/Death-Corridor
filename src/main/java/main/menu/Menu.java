@@ -1,8 +1,8 @@
 package main.menu;
 
-import main.directors.UserDirector;
 import models.game.Game;
 import models.game.Upgrade;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -10,7 +10,6 @@ public class Menu {
 
     public static void mainMenu(){
         Game game;
-        UserDirector userDirector;
         System.out.println("----Game Start----");
         String input = "";
 
@@ -76,17 +75,10 @@ public class Menu {
         }else if (input == 5){
             System.out.println(game.getUser().showSoldier());
         } else if (input == 6){
-            System.out.println(saveGame(game));
         }else {
             System.out.println("---Unknown Input---");
         }
 
         return game;
-    }
-
-    public static String saveGame(Game game){
-        UserDirector userDirector = new UserDirector(game.getUser());
-        userDirector.saveGame();
-        return "---Saved Game---";
     }
 }

@@ -11,6 +11,7 @@ public class User extends Acount {
     private List<WarStatus> warStatusList;
 
     public User(){
+        super();
         id = new ObjectId();
         teamMaker(5);
         this.point = 10;
@@ -21,6 +22,10 @@ public class User extends Acount {
         return warStatusList;
     }
 
+    public void setWarStatusList(List<WarStatus> warStatusList) {
+        this.warStatusList = warStatusList;
+    }
+
     public int getPoint(){
         return this.point;
     }
@@ -29,11 +34,11 @@ public class User extends Acount {
         this.point = point;
     }
 
-    public void setWarStatusList(List<WarStatus> warStatusList) {
-        this.warStatusList = warStatusList;
-    }
-
     public ObjectId getId(){
         return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 }

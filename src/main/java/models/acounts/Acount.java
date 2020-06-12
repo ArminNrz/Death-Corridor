@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Acount {
-    private List<Soldier> team;
+    protected List<Soldier> team;
+
+    public Acount(){
+        team = new ArrayList<>();
+    }
 
     public String teamMaker(int teamLenght){
-        team = new ArrayList<>();
         String output = "Team is: ";
 
         for(int i = 0; i < teamLenght; i++){
@@ -26,6 +29,10 @@ public abstract class Acount {
 
     public List<Soldier> getTeam(){
         return this.team;
+    }
+
+    public void setTeam(List<Soldier> team) {
+        this.team = team;
     }
 
     public Soldier selectSoldier(){

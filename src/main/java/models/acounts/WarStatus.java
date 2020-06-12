@@ -48,4 +48,5 @@ public class WarStatus {
     public void setId(ObjectId id) {
         this.id = id;
     }
+
 }

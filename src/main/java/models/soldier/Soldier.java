@@ -19,20 +19,37 @@ public abstract class Soldier {
     public int getId(){
         return id;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getHealth() {
         return health;
     }
 
+    public void setHealth(int health) { this.health = health; }
+
     public String getType() { return type; }
 
-    public void setHealth(int health) { this.health = health; }
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Weapon getWeapon() {
         return weapon;
     }
 
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
     public abstract String showSoldier();
 
     public abstract void getShot(int damage);
+
+
+
+
+
+
 }
