@@ -1,7 +1,13 @@
 package main.menu;
 
+import main.directors.SoldierDirector;
+import main.directors.WeaponDirector;
 import models.game.Game;
 import models.game.Upgrade;
+import models.soldier.Soldier;
+import models.weapons.Weapon;
+import persistance.soldiers.SoldierDao;
+import persistance.weapons.WeponDao;
 
 import java.util.Scanner;
 

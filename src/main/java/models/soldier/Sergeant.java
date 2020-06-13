@@ -1,10 +1,12 @@
 package models.soldier;
 
 import models.weapons.Weapon;
+import org.bson.Document;
 
 public class Sergeant extends Soldier {
-    public Sergeant(){
-        super();
+
+    public Sergeant(Document document){
+        super(document);
     }
 
     public Sergeant(Weapon weapon) {
@@ -23,5 +25,10 @@ public class Sergeant extends Soldier {
     @Override
     public void getShot(int damage) {
         health -= damage;
+    }
+
+    @Override
+    public Document getBsonDocument(){
+        return super.getBsonDocument();
     }
 }

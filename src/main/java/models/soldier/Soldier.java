@@ -1,9 +1,16 @@
 package models.soldier;
+import main.directors.WeaponDirector;
 import main.math.MakeRandom;
 import models.weapons.Weapon;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public abstract class Soldier {
+    private final String HEALTH = "health";
+    private final String TYPE = "type";
+    private final String ID = "id";
+    private final String WEAPON = "weapon";
+
     protected Weapon weapon;
     protected int health;
     protected String type;
@@ -14,13 +21,18 @@ public abstract class Soldier {
         this.weapon = weapon;
     }
 
-    public Soldier(){}
+    public Soldier(Document doc){
+        WeaponDirector weaponDirector = new WeaponDirector();
+
+        this.id = doc.getInteger(ID);
+        this.type = doc.getString(TYPE);
+        this.health = doc.getInteger(HEALTH);
+        Document weaponDoc = doc.get(WEAPON, Document.class);
+        this.weapon = weaponDirector.loadWeaponByBsonDocument(weaponDoc);
+    }
 
     public int getId(){
         return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getHealth() {
@@ -39,17 +51,16 @@ public abstract class Soldier {
         return weapon;
     }
 
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-
     public abstract String showSoldier();
 
     public abstract void getShot(int damage);
 
-
-
-
-
-
+    public Document getBsonDocument(){
+        Document document = new Document();
+        document.append(ID, id);
+        document.append(TYPE, type);
+        document.append(HEALTH, health);
+        document.append(WEAPON, weapon.getBsonDocument());
+        return document;
+    }
 }

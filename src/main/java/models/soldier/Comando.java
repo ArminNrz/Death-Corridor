@@ -1,11 +1,12 @@
 package models.soldier;
 
 import models.weapons.Weapon;
+import org.bson.Document;
 
 public class Comando extends Soldier {
 
-    public Comando(){
-        super();
+    public Comando(Document document){
+        super(document);
     }
 
     public Comando(Weapon weapon) {
@@ -26,6 +27,11 @@ public class Comando extends Soldier {
     public void getShot(int damage) {
         health -= damage;
         health += 5;
+    }
+
+    @Override
+    public Document getBsonDocument(){
+        return super.getBsonDocument();
     }
 
 
